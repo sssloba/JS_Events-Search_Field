@@ -19,6 +19,10 @@ input, button {
 	outline: none;
 }
 
+button {
+	cursor: pointer;
+}
+
 #movies-container {
 	background-color: #cabfb0;
 	width: 100%;
