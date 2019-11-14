@@ -30,7 +30,7 @@ searchField.addEventListener("keyup", function(e) {
  	 	});
  	moviesDiv.innerHTML = "";
  	createMovie(searching);
- 	removeParent(moviesArray);
+ 	removeParent();
 }); 	
 
 function createMovie(arr) {
@@ -39,36 +39,30 @@ function createMovie(arr) {
 		newMovie.classList.add('movie');
 		moviesDiv.appendChild(newMovie);
 		newMovie.innerHTML += '<div>' + item.name + '</div><img src="' + item.picture + '" alt="movie image">' + '<button>CLOSE</button>'; //or '<input type="button" value="CLOSE">'
-		// removeParent(newMovie);
 	});
 }
 
-createMovie(moviesArray);
-
-function removeParent(newMovie) {
+function removeParent() {
 	var close = document.querySelectorAll('button');
+
 	close.forEach(function(item) {
-		item.addEventListener("click", function(e) {
+		item.addEventListener("click", function() {
 		var parentClose = item.parentElement;
 
-		// moviesDiv.remove(this.item);
-
-		console.log(parentClose);
-		// for (var i = 0; i < moviesArray.length; i++) {
-			// if (moviesArray[item].name = parentClose.name) {
-				moviesArray.splice(moviesArray[item], 1);	
-			// }
-		// }
+		for (var i = 0; i < moviesArray.length; i++) {
+			if (parentClose.firstChild.textContent == moviesArray[i].name) {
+				moviesArray.splice([i], 1);	
+			}
+		}
 		
-
-		console.log(moviesArray);
 		moviesDiv.innerHTML = "";
 		createMovie(moviesArray);
-		removeParent(moviesArray);
+		removeParent();
 		searchField.value = "";
 		});
 	});
 };
 
-removeParent(moviesArray);
+createMovie(moviesArray);
+removeParent();
 
